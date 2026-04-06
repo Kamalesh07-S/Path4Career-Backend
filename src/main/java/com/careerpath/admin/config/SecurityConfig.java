@@ -64,6 +64,8 @@ public class SecurityConfig {
                         // Certificate endpoints
                         .requestMatchers("/api/v1/certificates/verify/**").permitAll()
                         .requestMatchers("/api/v1/certificates/**").authenticated()
+                        // Analytics endpoints
+                        .requestMatchers("/api/v1/analytics/**").permitAll()
                         // Everything else
                         .anyRequest().permitAll())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

@@ -2,6 +2,7 @@ package com.careerpath.admin.user.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,22 +23,22 @@ public class UserDashboardController {
     }
 
     @GetMapping("/summary")
-    public DashboardSummaryResponse getDashboardSummary(Authentication authentication) {
-        return dashboardService.getDashboard(authentication);
+    public ResponseEntity<DashboardSummaryResponse> getDashboardSummary(Authentication authentication) {
+        return ResponseEntity.ok(dashboardService.getDashboard(authentication));
     }
 
     @GetMapping("/skills")
-    public List<UserSkill> getUserSkills(Authentication authentication) {
-        return dashboardService.getSkills(authentication);
+    public ResponseEntity<List<UserSkill>> getUserSkills(Authentication authentication) {
+        return ResponseEntity.ok(dashboardService.getSkills(authentication));
     }
 
     @GetMapping("/activities")
-    public List<UserActivity> getActivities(Authentication authentication) {
-        return dashboardService.getActivities(authentication);
+    public ResponseEntity<List<UserActivity>> getActivities(Authentication authentication) {
+        return ResponseEntity.ok(dashboardService.getActivities(authentication));
     }
 
     @GetMapping("/achievements")
-    public List<UserAchievement> getAchievements(Authentication authentication) {
-        return dashboardService.getAchievements(authentication);
+    public ResponseEntity<List<UserAchievement>> getAchievements(Authentication authentication) {
+        return ResponseEntity.ok(dashboardService.getAchievements(authentication));
     }
 }

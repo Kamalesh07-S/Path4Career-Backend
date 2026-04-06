@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import com.careerpath.admin.common.AuthException;
 import com.careerpath.admin.entity.User;
 import com.careerpath.admin.repository.UserRepo;
 import com.careerpath.admin.user.dto.DashboardSummaryResponse;
@@ -37,10 +38,18 @@ public class DashboardService {
         this.achievementService = achievementService;
     }
 
+    /**
+     * Resolves the current user from the authentication context.
+     * Returns a proper 401 if not authenticated instead of a 500 NPE.
+     */
     private User resolveUser(Authentication authentication) {
+        if (authentication == null || authentication.getName() == null) {
+            throw new AuthException("Not authenticated. Please log in.");
+        }
         User user = userRepository.findByEmail(authentication.getName());
-        if (user == null)
-            throw new RuntimeException("User not found");
+        if (user == null) {
+            throw new AuthException("User not found. Please log in again.");
+        }
         return user;
     }
 

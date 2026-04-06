@@ -36,6 +36,12 @@ public class User {
     @Column(name = "last_logout_at")
     private LocalDateTime lastLogoutAt;
 
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
+    @Column(name = "reset_password_token_expiry")
+    private LocalDateTime resetPasswordTokenExpiry;
+
     // ===== GETTERS & SETTERS =====
 
     public Long getId() { return id; }
@@ -70,4 +76,10 @@ public class User {
 
     public LocalDateTime getLastLogoutAt() { return lastLogoutAt; }
     public void setLastLogoutAt(LocalDateTime lastLogoutAt) { this.lastLogoutAt = lastLogoutAt; }
+
+    public String getResetPasswordToken() { return resetPasswordToken; }
+    public void setResetPasswordToken(String resetPasswordToken) { this.resetPasswordToken = resetPasswordToken; }
+
+    public LocalDateTime getResetPasswordTokenExpiry() { return resetPasswordTokenExpiry; }
+    public void setResetPasswordTokenExpiry(LocalDateTime resetPasswordTokenExpiry) { this.resetPasswordTokenExpiry = resetPasswordTokenExpiry; }
 }
